@@ -43,8 +43,7 @@
     <?php endif; ?>
     
     <div class="container">
-        <h1>Ticketsysteem</h1>
-        <h2>Login</h2>
+        <h1>Login</h1>
         <form method="post">
             <label for="username"><b>Username:</b></label>
             <input type="text" placeholder="username" name="username" required>
