@@ -30,7 +30,7 @@
         } else {
             $stmt = $pdo->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
             $stmt->execute(array($username, $hashed_password));
-            $message = 'Success';
+            $message = 'Success, you can login now.';
         }
     }
 ?>

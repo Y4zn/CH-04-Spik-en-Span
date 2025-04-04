@@ -8,7 +8,7 @@
     session_start();
 
     if (isset($_SESSION['username'])) {
-      header("Location: index.php");
+      header("Location: profile.php");
       exit;
     }
     
@@ -23,7 +23,7 @@
     
       if ($user && password_verify($password, $user['password'])) {
         $_SESSION['username'] = $user['username'];
-        header("Location: index.php");
+        header("Location: profile.php");
         exit;
       } else {
         $message = "Invalid username or password.";
