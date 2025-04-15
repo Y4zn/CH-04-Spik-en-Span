@@ -2,15 +2,8 @@
 session_start();
 
 if (!isset($_SESSION['username'])) {
-  session_destroy();
-  header("Location: login.php");
-  exit;
-}
-
-if (isset($_POST['logout'])) {
-  session_destroy();
-  header("Location: login.php");
-  exit;
+    header("Location: login.php");
+    exit;
 }
 
 $servername = "localhost";
@@ -22,27 +15,24 @@ $pdo = new PDO("mysql:host=$servername;dbname=ticketsysteem",$username, $passwor
 $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ? AND admin = '1'");
 $stmt->execute([$_SESSION['username']]);
 $admin = $stmt->fetch(PDO::FETCH_ASSOC);
+if (!$admin) {
+    header("Location: profile.php");
+    exit;
+}
 
-$stmt = $pdo->prepare('SELECT * FROM tickets WHERE user = ?');
-$stmt->execute([$_SESSION['username']]);
-
+$stmt = $pdo->prepare('SELECT * FROM tickets');
+$stmt->execute();
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Tickets</title>
+  <title>Admin page</title>
 </head>
 <body>
-  <form method="post">
-    <button type="submit" name="logout">Logout</button>
-  </form>
-  <?php if ($admin):?>
-  <button onclick="window.location.href='admin.php'">ADMIN Page</button>
-  <?php endif; ?>
-  <p>You have successfully logged in.</p>
+  <p>You have successfully logged in as Administrator.</p>
   <h1>Welcome, <?php echo $_SESSION['username']; ?>!</h1>
   <?php if ($stmt->rowCount() > 0): ?>
-      <h2>Your Tickets:</h2>
+      <h2>All Tickets:</h2>
   <table border="1">
   <tr>
     <th>Ticket Number</th>
