@@ -29,11 +29,10 @@ function checkTicketNumberAvailability($ticketNumber){
     return $validTicketNumber;
   }
 }
-function generateTicket($validEmail) {
+function generateTicket() {
 
     $validTicketNumber = checkTicketNumberAvailability(rand(10000, 99999));
 
-    $uniekeData = $validEmail . '_' . uniqid();
     // QR-code genereren
     $qrCode = new QrCode($validTicketNumber);
     $writer = new PngWriter();
@@ -60,7 +59,7 @@ function generateTicket($validEmail) {
     $pdf->SetFont('Arial', '', 12);
     $pdf->Cell(50, 10, 'E-mail:', 0, 0); // Label
     $pdf->SetFont('Arial', 'B', 12);
-    $pdf->Cell(0, 10, $validEmail, 0, 1); // Value
+    $pdf->Cell(0, 10, $_SESSION['email'], 0, 1); // Value
     
     $pdf->SetFont('Arial', '', 12);
     $pdf->Cell(50, 10, 'Username:', 0, 0); // Label
@@ -85,6 +84,7 @@ function generateTicket($validEmail) {
 
     // E-mail verzenden
     $mail = new PHPMailer(true);
+    insertTicketIntoDatabase($validTicketNumber);
     try {
         $mail->isSMTP();
         $mail->Host       = 'smtp.gmail.com';
@@ -95,7 +95,7 @@ function generateTicket($validEmail) {
         $mail->Port       = 587;
 
         $mail->setFrom('siemsirakm@gmail.com', 'Spik en Span');
-        $mail->addAddress($validEmail);
+        $mail->addAddress($_SESSION['email']);
 
         $mail->isHTML(true);
         $mail->Subject = 'Jouw ticket voor Spik en Span';
@@ -105,19 +105,22 @@ function generateTicket($validEmail) {
         $mail->addAttachment($pdfPath, 'ticket.pdf');
 
         $mail->send();
-        insertTicketIntoDatabase($validEmail, $validTicketNumber);
     } catch (Exception $e) {
         echo "Verzenden mislukt: {$mail->ErrorInfo}";
     }
 }
-function insertTicketIntoDatabase($validEmail, $validTicketNumber) {
+function insertTicketIntoDatabase($validTicketNumber) {
+  
+  global $ticketType;
+  global $date_and_time;
+
   try {
   $servername = "localhost";
   $username = "root";
   $password = "";
   $pdo = new PDO("mysql:host=$servername;dbname=ticketsysteem",$username, $password);
-  $stmt = $pdo->prepare("INSERT INTO tickets (ticket_number, user, email) VALUES (?, ?, ?)");
-  $stmt->execute(array($validTicketNumber, $_SESSION["username"], $validEmail));
+  $stmt = $pdo->prepare("INSERT INTO tickets (ticket_number, ticket_type, date_and_time, user, email) VALUES (?, ?, ?, ?, ?)");
+  $stmt->execute(array($validTicketNumber, $ticketType, $date_and_time, $_SESSION["username"], $_SESSION['email']));
   echo "<h2>Order completed successfully!</h2>";
   echo "<h3>Check your inbox for the ticket.</h3>";
   } catch (PDOException $e) {
@@ -127,29 +130,117 @@ function insertTicketIntoDatabase($validEmail, $validTicketNumber) {
 
 if (isset($_POST["oneClickOrder"])) {
 
+  $ticketType = $_POST['ticketType'];
+  $date_and_time = $_POST['date_and_time'];
+
+  $validTicketNumber = checkTicketNumberAvailability(rand(10000, 99999));
+
   if (!isset($_SESSION["username"])) {
     header("Location: login.php");
     exit;
   }
 
-  // generateTicket($_SESSION['email']);
-  
+  generateTicket();
+
 }
 
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Complete order</title>
+  <title>Spik en Span - Complete order</title>
 </head>
 <body>
   <h1>Order Tickets</h1>
-  <form method="pos2t">
+  <form method="post">
     <p>You'll receive your ticket via e-mail</p>
+    
+    <label for="ticketType">Ticket for:</label>
+    <select name="ticketType" id="ticketType" required>
+      <option value="" disabled selected>Select a ticket type</option>
+      <option value="adult">An Adult (12+)</option>
+      <option value="child">A Child (4-11 years)</option>
+    </select>
+    <br>
+    <label for="date_and_time">Time:</label>
+    <select name="date_and_time" id="date_and_time" required>
+      <option value="" disabled selected>Select a time</option>
+      <option value="weekend">Weekend</option>
+      <option value="weekdays">Weekdays</option>
+    </select>
+
     <button type="submit" name="oneClickOrder">One click purchase</button>
   </form>
   <?php if (isset($message)): ?> 
     <div><?php echo $message; ?></div>
   <?php endif; ?>
 </body>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    /*background-image: url('carnaval-achtergrond.jpg'); /* Voeg een carnavalsafbeelding toe als achtergrond */
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    color: #FFEB3B; /* Gele tekstkleur voor een levendig contrast */
+}
+
+h1, h2 {
+    text-align: center;
+    color: #F44336; /* Rode kleur voor koppen */
+    text-shadow: 2px 2px #4CAF50; /* Groen schaduw effect voor een feestelijke uitstraling */
+    margin-top: 20px;
+}
+
+form {
+    background-color: rgba(255, 255, 255, 0.8); /* Licht transparante achtergrond voor het formulier */
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    margin: 0 auto;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Schaduw voor een 3D-effect */
+}
+
+label {
+    font-weight: bold;
+    color: #4CAF50; /* Groen thema */
+}
+
+input[type="text"] {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #F44336; /* Rode rand */
+    border-radius: 5px;
+}
+
+button {
+    background-color: #4CAF50; /* Groen thema */
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #45a049; /* Donkergroen bij hover */
+}
+
+p {
+    color: #FFEB3B; /* Geel thema */
+    font-weight: bold;
+    text-align: center;
+}
+
+div {
+    color: #F44336; /* Rode foutmeldingen */
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+}
+</style>
 </html>

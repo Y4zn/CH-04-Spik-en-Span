@@ -58,7 +58,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ticketsysteem - Login</title>
+    <title>Spik en Span- Login Page</title>
 </head>
 <body>
     <?php if (isset($message)): ?>
@@ -95,4 +95,67 @@
         </form>
     </div>
 </body>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('carnaval-background.jpg'); /* Voeg een carnavalsfoto toe als achtergrond */
+    background-size: cover;
+    background-position: center;
+    color: #FFEB3B; /* Geel thema voor de tekstkleur */
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    color: #F44336; /* Rode kleur voor de titel */
+    text-shadow: 2px 2px #4CAF50; /* Groen schaduweffect voor een vrolijke uitstraling */
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.8); /* Licht transparante achtergrond voor het formulier */
+    border-radius: 10px;
+    padding: 20px;
+    width: 400px;
+    margin: 50px auto;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Schaduw voor een modern effect */
+}
+
+label {
+    font-weight: bold;
+    color: #4CAF50; /* Groen thema */
+    display: block;
+    margin-top: 15px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #F44336; /* Rode rand voor een feestelijk detail */
+    border-radius: 5px;
+}
+
+button {
+    background-color: #4CAF50; /* Groen thema */
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #45a049; /* Donkergroen bij hover voor interactie */
+}
+
+div {
+    text-align: center;
+    color: #F44336; /* Rode kleur voor foutmeldingen of berichten */
+    font-weight: bold;
+    margin-top: 10px;
+}
+</style>
 </html>

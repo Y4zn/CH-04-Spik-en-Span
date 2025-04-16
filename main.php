@@ -9,7 +9,7 @@ if (isset($_SESSION["username"])) {
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Main Page</title>
+  <title>Spik en Span - Main Page</title>
 </head>
 <body>
   <h1>Main page</h1>

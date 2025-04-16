@@ -39,7 +39,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ticketsysteem - Login</title>
+    <title>Spik en Span - Login</title>
 </head>
 <body>
     <?php if (isset($message)): ?>
@@ -61,4 +61,45 @@
         </form>
     </div>
 </body>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('achtergrond.jpeg'); /* Vervang 'jouw-foto.jpg' met de naam van je foto */
+    background-size: cover; /* Zorgt ervoor dat de foto het hele scherm bedekt */
+    background-position: center; /* Centreert de foto op de pagina */
+    margin: 0;
+    padding: 0;
+    color: rgb(255, 94, 0); /* Tekstkleur die bij de achtergrond past */
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+button {
+  font-size: 18px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(255, 94, 0);
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgb(255, 94, 0);
+}
+
+input[type="text"], input[type="password"] {
+  font-size: 18px;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+</style>
 </html>
