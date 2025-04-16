@@ -37,10 +37,9 @@ $stmt->execute([$_SESSION['username']]);
     <button type="submit" name="logout">Logout</button>
   </form>
   <?php if ($admin):?>
-  <button onclick="window.location.href='admin.php'">ADMIN Page</button>
+  <button onclick="window.location.href='scanner.php'">ADMIN Page</button>
   <?php endif; ?>
-  <p>You have successfully logged in.</p>
-  <h1>Welcome, <?php echo $_SESSION['username']; ?>!</h1>
+  <h2>Welcome back <?php echo $_SESSION['firstname']." ". $_SESSION['lastname']; ?>!</h2>
   <?php if ($stmt->rowCount() > 0): ?>
       <h2>Your Tickets:</h2>
   <table border="1">
@@ -61,7 +60,7 @@ $stmt->execute([$_SESSION['username']]);
   </table>
   <?php else: ?>
     <br>
-    <h3>No tickets found.</h3>
+    <h1>You currently have no tickets.</h1>
   <?php endif; ?>
   <br>
   <h2>Buy Tickets</h2>

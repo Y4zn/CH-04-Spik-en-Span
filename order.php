@@ -7,11 +7,8 @@ use setasign\Fpdi\Fpdi;  // Hier wordt nu de juiste FPDI namespace gebruikt
 
 session_start();
 
-if (!isset($_SESSION["username"])) {
-  header("Location: login.php");
-  exit;
-} else {
-  echo "<h2>Logged in as, ".$_SESSION["username"]."</h1>";
+if (isset($_SESSION["username"])) {
+  echo "<h2>Welcome back ".$_SESSION["firstname"]." ".$_SESSION["lastname"]."!</h1>";
 }
 
 // Autoload
@@ -129,16 +126,14 @@ function insertTicketIntoDatabase($validEmail, $validTicketNumber) {
 }
 
 if (isset($_POST["oneClickOrder"])) {
-  $email = $_POST["email"];
-  $pattern = '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/';
 
-  if (preg_match($pattern, $email)) {
-    $validEmail = $email;
-    generateTicket($validEmail);
-    return;
-  } else {
-    $message = "Invalid email format.";
+  if (!isset($_SESSION["username"])) {
+    header("Location: login.php");
+    exit;
   }
+
+  // generateTicket($_SESSION['email']);
+  
 }
 
 ?>
@@ -148,12 +143,8 @@ if (isset($_POST["oneClickOrder"])) {
   <title>Complete order</title>
 </head>
 <body>
-  <h1>Buy Tickets</h1>
-  <h2>Complete your order</h2>
-  <br>
-  <form method="post">
-    <label for="email"><b>Your e-mail:</b></label>
-    <input type="text" placeholder="example@domain.com" name="email" required>
+  <h1>Order Tickets</h1>
+  <form method="pos2t">
     <p>You'll receive your ticket via e-mail</p>
     <button type="submit" name="oneClickOrder">One click purchase</button>
   </form>
