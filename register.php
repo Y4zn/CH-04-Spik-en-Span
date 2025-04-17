@@ -94,16 +94,32 @@
             <button name="login" onclick="window.location.href='login.php'">Already have an account?</button>
         </form>
     </div>
+    <footer>
+        &copy; 2025 Spik en Span. Alle rechten voorbehouden.
+        <a href="privacyverklaring.html">Bekijk onze privacyverklaring</a>
+    </footer>
 </body>
 <style>
 body {
+    background-color: rgba(82, 82, 82, 0.6);
+    background-blend-mode: darken;
     font-family: Arial, sans-serif;
     background-image: url('carnaval-background.jpg'); /* Voeg een carnavalsfoto toe als achtergrond */
     background-size: cover;
     background-position: center;
     color: #FFEB3B; /* Geel thema voor de tekstkleur */
+    text-align: center;
     margin: 0;
     padding: 0;
+}
+
+footer {
+    background-color: #F44336;
+    color: white;
+    padding: 10px 0px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }
 
 h1 {

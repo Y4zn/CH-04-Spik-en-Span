@@ -60,9 +60,15 @@
             <button type="button" onclick="window.location.href='register.php'">Doesn't have an account?</button>
         </form>
     </div>
+    <footer>
+        &copy; 2025 Spik en Span. Alle rechten voorbehouden.
+        <a href="privacyverklaring.html">Bekijk onze privacyverklaring</a>
+    </footer>
 </body>
 <style>
 body {
+    background-color: rgba(82, 82, 82, 0.6);
+    background-blend-mode: darken;
     font-family: Arial, sans-serif;
     background-image: url('achtergrond.jpeg'); /* Vervang 'jouw-foto.jpg' met de naam van je foto */
     background-size: cover; /* Zorgt ervoor dat de foto het hele scherm bedekt */
@@ -70,6 +76,16 @@ body {
     margin: 0;
     padding: 0;
     color: rgb(255, 94, 0); /* Tekstkleur die bij de achtergrond past */
+}
+
+footer {
+    background-color: #F44336;
+    color: white;
+    padding: 10px 0px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
 }
 
 .container {
@@ -86,6 +102,7 @@ button {
   background-color: rgb(255, 94, 0);
   color: white;
   cursor: pointer;
+  margin: 5px;
 }
 
 button:hover {

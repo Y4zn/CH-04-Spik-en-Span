@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Privacyverklaring - Spik en Span</title>
+  <link rel="stylesheet" href="privacy.css" />
+
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #FFEB3B; /* Geel thema */
+        color: #4CAF50; /* Groen thema */
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+    header {
+        background-color: #F44336; /* Rood thema */
+        color: white;
+        padding: 20px;
+    }
+    .button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        margin: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    .button:hover {
+        background-color: #45a049;
+    }
+    .logo {
+        font-size: 40px;
+        font-weight: bold;
+        margin: 20px 0;
+    }
+    footer {
+        background-color: #F44336;
+        color: white;
+        padding: 10px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+    .welcome {
+        font-size: 20px;
+        margin-top: 20px;
+        color: #E91E63;
+    }
+</style>
+
+</head>
+<body>
+  <header>
+    <div class="logo">Spik en Span</div>
+    <div>
+      <button class="button" onclick="setLanguage('nl')">Nederlands</button>
+      <button class="button" onclick="setLanguage('en')">English</button>
+      <button class="button" onclick="setLanguage('fr')">Français</button>
+    </div>
+  </header>
+  
+  <div class="container" id="content">
+
+    <script>
+      const translations = {
+        nl: `
+          <h1>Privacyverklaring voor Spik en Span</h1>
+          <p>Bij Spik en Span vinden we het belangrijk om jouw persoonsgegevens goed te beschermen.</p>
+          <p>In deze verklaring leggen we uit welke gegevens we verzamelen, waarom we dat doen en hoe we ze gebruiken.</p>
+          <h2>1. Inleiding</h2>
+          <p>Spik en Span is een website waar je tickets kunt kopen voor Spik en Span met een QR-code.</p>
+          <p>Deze privacyverklaring geldt voor alle gegevens die we via de website verzamelen.</p>
+          <h2>2. Welke gegevens verzamelen wij?</h2>
+          <ul>
+            <li>Jouw gegevens zoals je naam en e-mailadres, adres die je invult bij het kopen van een ticket.</li>
+            <li>Betalingsgegevens als je een ticket koopt (bijvoorbeeld via een betaalmethode).</li>
+          </ul>
+          <h2>3. Waarom verzamelen we deze gegevens?</h2>
+          <ul>
+            <li>Het verwerken van je ticketaankoop en het verstrekken van je QR-code.</li>
+            <li>Om je een bevestiging te sturen van je aankoop.</li>
+            <li>Om te zorgen dat de website goed werkt en beter te maken voor jou.</li>
+            <li>Om te zorgen dat je een QR-code krijgt (via mail).</li>
+          </ul>
+          <h2>4. Hoe lang bewaren we jouw gegevens?</h2>
+          <p>We bewaren je gegevens zolang als nodig is om de doelen hierboven te bereiken.</p>
+          <p>Tenzij we dat wettelijk verplicht zijn, bijvoorbeeld voor belasting.</p>
+          <h2>5. Delen we jouw gegevens?</h2>
+          <p>We delen jouw gegevens niet met andere bedrijven omdat het een schoolopdracht is.</p>
+          <p>Tenzij het nodig is om de betaling te verwerken of als we dat wettelijk moeten doen.</p>
+          <h2>6. Welke rechten heb je?</h2>
+          <ul>
+            <li><strong>Inzage:</strong> Je mag vragen welke gegevens wij van jou hebben.</li>
+            <li><strong>Aanpassing:</strong> Als jouw gegevens niet kloppen mag je ons vragen om ze te veranderen.</li>
+            <li><strong>Verwijdering:</strong> Je kunt ons vragen om jouw gegevens te verwijderen (tenzij het belangrijk is).</li>
+            <li><strong>Bezwaar:</strong> Je mag bezwaar maken tegen het gebruik van je gegevens.</li>
+          </ul>
+          <h2>7. Contactgegevens</h2>
+          <p>Als je vragen hebt over deze privacyverklaring of jouw gegevens kun je contact opnemen met:</p>
+          <p><strong>Ubay Fantaziyeh</strong><br>
+          E-mail: <a href="mailto:523107@vista.nl">523107@vista.nl</a></p>
+        `,
+        en: `
+          <h1>Privacy Policy for Spik en Span</h1>
+          <p>At Spik en Span, we believe it’s important to protect your personal data.</p>
+          <p>This policy explains what data we collect, why we collect it, and how we use it.</p>
+          <h2>1. Introduction</h2>
+          <p>Spik en Span is a website where you can buy tickets with a QR code.</p>
+          <p>This privacy policy applies to all information we collect through the website.</p>
+          <h2>2. What data do we collect?</h2>
+          <ul>
+            <li>Your information like your name and email address, and address entered when buying a ticket.</li>
+            <li>Payment information if you buy a ticket (e.g., via a payment method).</li>
+          </ul>
+          <h2>3. Why do we collect this data?</h2>
+          <ul>
+            <li>To process your ticket purchase and provide your QR code.</li>
+            <li>To send you a confirmation of your purchase.</li>
+            <li>To ensure the website works properly and improve it for you.</li>
+            <li>To make sure you receive a QR code (by email).</li>
+          </ul>
+          <h2>4. How long do we store your data?</h2>
+          <p>We store your data as long as necessary for the purposes listed above.</p>
+          <p>Unless legally required, for example for tax purposes.</p>
+          <h2>5. Do we share your data?</h2>
+          <p>We do not share your data with other companies as this is a school project.</p>
+          <p>Unless it’s necessary to process the payment or we are legally obliged.</p>
+          <h2>6. What rights do you have?</h2>
+          <ul>
+            <li><strong>Access:</strong> You may ask which data we have about you.</li>
+            <li><strong>Correction:</strong> If your data is incorrect, you may ask us to correct it.</li>
+            <li><strong>Deletion:</strong> You can ask us to delete your data (unless necessary).</li>
+            <li><strong>Objection:</strong> You may object to the use of your data.</li>
+          </ul>
+          <h2>7. Contact Information</h2>
+          <p>If you have questions about this privacy policy or your data, contact:</p>
+          <p><strong>Ubay Fantaziyeh</strong><br>
+          Email: <a href="mailto:523107@vista.nl">523107@vista.nl</a></p>
+        `,
+        fr: `
+          <h1>Déclaration de confidentialité pour Spik en Span</h1>
+          <p>Chez Spik en Span, nous accordons de l'importance à la protection de vos données personnelles.</p>
+          <p>Cette déclaration explique quelles données nous collectons, pourquoi nous les collectons et comment nous les utilisons.</p>
+          <h2>1. Introduction</h2>
+          <p>Spik en Span est un site où vous pouvez acheter des billets avec un code QR.</p>
+          <p>Cette déclaration de confidentialité s'applique à toutes les données que nous collectons via le site.</p>
+          <h2>2. Quelles données collectons-nous ?</h2>
+          <ul>
+            <li>Vos informations telles que votre nom, adresse e-mail et adresse saisie lors de l'achat d'un billet.</li>
+            <li>Données de paiement si vous achetez un billet (par exemple via un moyen de paiement).</li>
+          </ul>
+          <h2>3. Pourquoi collectons-nous ces données ?</h2>
+          <ul>
+            <li>Pour traiter votre achat de billet et fournir votre code QR.</li>
+            <li>Pour vous envoyer une confirmation de votre achat.</li>
+            <li>Pour assurer le bon fonctionnement du site et l'améliorer pour vous.</li>
+            <li>Pour vous envoyer un code QR (par e-mail).</li>
+          </ul>
+          <h2>4. Combien de temps conservons-nous vos données ?</h2>
+          <p>Nous conservons vos données aussi longtemps que nécessaire pour atteindre les objectifs ci-dessus.</p>
+          <p>Sauf si la loi nous oblige à les conserver, par exemple à des fins fiscales.</p>
+          <h2>5. Partageons-nous vos données ?</h2>
+          <p>Nous ne partageons pas vos données avec d'autres entreprises car il s'agit d'un projet scolaire.</p>
+          <p>Sauf si c'est nécessaire pour le paiement ou si la loi l'exige.</p>
+          <h2>6. Quels sont vos droits ?</h2>
+          <ul>
+            <li><strong>Accès :</strong> Vous pouvez demander quelles données nous avons sur vous.</li>
+            <li><strong>Correction :</strong> Si vos données sont incorrectes, vous pouvez nous demander de les corriger.</li>
+            <li><strong>Suppression :</strong> Vous pouvez demander la suppression de vos données (sauf si nécessaire).</li>
+            <li><strong>Objection :</strong> Vous pouvez vous opposer à l'utilisation de vos données.</li>
+          </ul>
+          <h2>7. Coordonnées</h2>
+          <p>Si vous avez des questions sur cette déclaration ou vos données, contactez :</p>
+          <p><strong>Ubay Fantaziyeh</strong><br>
+          E-mail : <a href="mailto:523107@vista.nl">523107@vista.nl</a></p>
+        `
+      };
+    
+      function setLanguage(lang) {
+        document.getElementById("content").innerHTML = translations[lang];
+      }
+      window.onload = function () {
+  setLanguage('nl');
+};
+
+    </script>
+    
+  </div>
+</body>
+</html>
